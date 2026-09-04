@@ -23,6 +23,8 @@ class DistributionResource extends Resource
 
     protected static ?string $navigationLabel = 'Distribusi Barang';
 
+    protected static bool $shouldRegisterNavigation = false;
+
     protected static ?string $slug = 'distributions';
 
     protected static string|\UnitEnum|null $navigationGroup = 'Persediaan';

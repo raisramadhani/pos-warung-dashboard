@@ -2,7 +2,6 @@
 
 namespace App\Providers\Filament;
 
-use App\Enums\RoleType;
 use App\Filament\Merchant\Pages\Dashboard\MerchantDashboard;
 use App\Filament\Merchant\Pages\Dashboard\TransactionDashboard;
 use App\Filament\Merchant\Pages\SystemFlow;
@@ -57,13 +56,6 @@ class MerchantPanelProvider extends PanelProvider
                     ->icon(Heroicon::OutlinedShoppingCart)
                     ->sort(0)
                     ->group('Transaksi'),
-                NavigationItem::make('admin-panel')
-                    ->label('Panel Admin')
-                    ->url('/admin')
-                    ->icon('tabler-user-cog')
-                    ->sort(99)
-                    ->group('Dashboard')
-                    ->visible(fn (): bool => auth()->user()?->role === RoleType::SuperAdmin),
             ])
             ->navigationGroups([
                 NavigationGroup::make('Dashboard'),

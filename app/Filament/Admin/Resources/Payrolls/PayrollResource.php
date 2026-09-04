@@ -17,6 +17,8 @@ class PayrollResource extends Resource
 
     protected static ?string $navigationLabel = 'Penggajian';
 
+    protected static bool $shouldRegisterNavigation = false;
+
     protected static ?string $slug = 'payrolls';
 
     protected static string|\UnitEnum|null $navigationGroup = 'Penggajian';

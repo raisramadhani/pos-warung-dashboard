@@ -23,6 +23,8 @@ class GoodsReceiptResource extends Resource
 
     protected static ?string $navigationLabel = 'Penerimaan Barang';
 
+    protected static bool $shouldRegisterNavigation = false;
+
     protected static ?string $slug = 'goods-receipts';
 
     protected static string|\UnitEnum|null $navigationGroup = 'Persediaan';

@@ -21,6 +21,11 @@ class SystemFlow extends Page
 
     protected static ?string $slug = 'system-flow';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
+
     public function content(Schema $schema): Schema
     {
         return $schema->components([

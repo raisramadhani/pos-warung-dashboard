@@ -2,15 +2,12 @@
 
 namespace App\Providers\Filament;
 
-use App\Enums\RoleType;
 use App\Filament\Admin\Pages\Dashboard\AdminDashboard;
 use App\Filament\Admin\Pages\Dashboard\TransactionReportDashboard;
 use App\Filament\Admin\Pages\ProfitLossReport;
 use App\Filament\Admin\Pages\SystemFlow;
 use App\Traits\ConfiguresFilamentPanel;
-use Filament\Facades\Filament;
 use Filament\Navigation\NavigationGroup;
-use Filament\Navigation\NavigationItem;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -46,15 +43,6 @@ class AdminPanelProvider extends PanelProvider
                 NavigationGroup::make('Jadwal Shift'),
                 NavigationGroup::make('Penggajian'),
                 NavigationGroup::make('Lainnya'),
-            ])
-            ->navigationItems([
-                NavigationItem::make('merchant-panel')
-                    ->label('Panel Outlet')
-                    ->url(fn (): string => Filament::getPanel('merchant')->getUrl() ?? '/')
-                    ->icon('tabler-user-star')
-                    ->sort(99)
-                    ->group('Dashboard')
-                    ->visible(fn (): bool => auth()->user()?->role === RoleType::SuperAdmin),
             ])
             ->viteTheme('resources/css/filament/admin/theme.css');
 

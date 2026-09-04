@@ -19,6 +19,11 @@ class ScheduleCalendarPage extends Page
 
     protected string $view = 'filament.merchant.schedules.calendar';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
+
     public static function getNavigationGroup(): string
     {
         return 'Jadwal Shift';

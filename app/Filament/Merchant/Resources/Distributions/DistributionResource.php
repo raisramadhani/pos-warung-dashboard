@@ -15,8 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class DistributionResource extends Resource
 {
-    // Saat ini merchant tidak bisa melakukan distribusi, karena saat ini gudang pusat (SPV) yang melakukan distribusi ke merchant. Sehingga fitur distribusi untuk merchant dimatikan.
-    // protected static bool $shouldRegisterNavigation = false;
+    protected static bool $shouldRegisterNavigation = false;
 
     protected static ?string $model = Distribution::class;
 

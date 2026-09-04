@@ -23,6 +23,8 @@ class AssetResource extends Resource
 
     protected static ?string $navigationLabel = 'Aset';
 
+    protected static bool $shouldRegisterNavigation = false;
+
     protected static ?string $slug = 'assets';
 
     protected static string|\UnitEnum|null $navigationGroup = 'Persediaan';

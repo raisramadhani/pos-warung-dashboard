@@ -25,6 +25,9 @@ class SupplierResource extends Resource
 
     protected static ?string $navigationLabel = 'Supplier';
 
+    // Fitur purchasing (PO/Penerimaan Barang) tidak dipakai untuk project Resto Bebek Ledok.
+    protected static bool $shouldRegisterNavigation = false;
+
     protected static ?string $slug = 'suppliers';
 
     protected static string|\BackedEnum|null $navigationIcon = 'tabler-replace-user';

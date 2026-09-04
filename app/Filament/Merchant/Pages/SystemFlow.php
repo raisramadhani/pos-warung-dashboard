@@ -19,6 +19,11 @@ class SystemFlow extends Page
 
     protected string $view = 'filament.merchant.system-flow';
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return false;
+    }
+
     public function getTitle(): string|Htmlable
     {
         return 'Panduan Penggunaan Sistem';

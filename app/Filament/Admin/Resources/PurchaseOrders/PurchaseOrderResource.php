@@ -23,6 +23,8 @@ class PurchaseOrderResource extends Resource
 
     protected static ?string $navigationLabel = 'Purchase Order';
 
+    protected static bool $shouldRegisterNavigation = false;
+
     protected static ?string $slug = 'purchase-orders';
 
     protected static string|\UnitEnum|null $navigationGroup = 'Persediaan';

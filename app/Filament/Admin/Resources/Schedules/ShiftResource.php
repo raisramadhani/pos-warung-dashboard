@@ -13,6 +13,8 @@ class ShiftResource extends Resource
 
     protected static ?string $navigationLabel = 'Kelola Jadwal';
 
+    protected static bool $shouldRegisterNavigation = false;
+
     protected static ?string $label = 'Kelola Jadwal';
 
     protected static ?string $pluralLabel = 'Kelola Jadwal';
