@@ -1,0 +1,14 @@
+{
+    "$schema": "https://mimo.xiaomi.com/mimocode/config.json",
+    "mcp": {
+        "laravel-boost": {
+            "type": "local",
+            "enabled": true,
+            "command": [
+                "php8.4",
+                "artisan",
+                "boost:mcp"
+            ]
+        }
+    }
+}

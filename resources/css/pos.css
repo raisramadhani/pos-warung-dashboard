@@ -1,0 +1,583 @@
+@import 'tailwindcss';
+@source '../views/pos/**/*';
+@source '../js/**/*';
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-primary: #155dfc;
+    --color-primaryHover: #0f4bc9;
+    --color-bgLight: #eff6ff;
+    --color-borderBlue: #bfdbfe;
+    --color-textDark: #1f2937;
+}
+
+body {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Semua tombol POS menampilkan cursor pointer saat aktif (hover),
+   kecuali tombol disabled yang menampilkan cursor not-allowed. */
+button:not(:disabled) {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: #475569;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* =====================================================================
+   SweetAlert2 — styling custom agar serasi dengan look & feel Tailwind POS
+   ===================================================================== */
+
+.swal2-popup {
+    border-radius: 1rem;
+    font-family: inherit;
+    padding: 1.25rem 1rem;
+}
+
+.swal2-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #1f2937;
+}
+
+.swal2-html-container {
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.swal2-confirm {
+    font-weight: 700;
+    font-size: 0.8rem;
+    border-radius: 0.625rem;
+    padding: 0.55rem 1.25rem;
+}
+
+/* Toast */
+.swal2-toast {
+    border-radius: 0.75rem;
+    font-family: inherit;
+    box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.swal2-toast .swal2-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+/* Dark mode */
+.dark .swal2-popup {
+    background-color: #1f2937;
+}
+
+.dark .swal2-title {
+    color: #f9fafb;
+}
+
+.dark .swal2-html-container {
+    color: #d1d5db;
+}
+
+.dark .swal2-toast {
+    background-color: #1f2937;
+}
+
+.dark .swal2-timer-progress-bar {
+    background-color: #60a5fa;
+}
+
+.modal-enter {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.modal-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 0.2s ease-out;
+}
+
+/* =====================================================================
+   Date Range Picker (vanilla-datetimerange-picker, alumuko — MIT)
+   Styling dibangun sendiri dengan Tailwind look & feel POS.
+   Container di-inject ke <body> oleh library; pakai `.dark` prefix
+   untuk mode gelap.
+   ===================================================================== */
+
+.daterangepicker {
+    position: absolute;
+    z-index: 3001;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-family: inherit;
+    color: #1f2937;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    margin-top: 6px;
+    padding: 0.75rem;
+    max-width: calc(100vw - 1rem);
+}
+
+/* panah kecil di atas picker */
+.daterangepicker::before {
+    content: '';
+    position: absolute;
+    top: -7px;
+    left: 18px;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #e5e7eb;
+}
+
+.daterangepicker::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 19px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #ffffff;
+}
+
+.daterangepicker.opensleft::before {
+    left: auto;
+    right: 18px;
+}
+
+.daterangepicker.opensleft::after {
+    left: auto;
+    right: 19px;
+}
+
+.daterangepicker.drop-up {
+    margin-top: 0;
+    margin-bottom: 6px;
+}
+
+.daterangepicker.drop-up::before {
+    top: auto;
+    bottom: -7px;
+    border-bottom: none;
+    border-top: 7px solid #e5e7eb;
+}
+
+.daterangepicker.drop-up::after {
+    top: auto;
+    bottom: -6px;
+    border-bottom: none;
+    border-top: 6px solid #ffffff;
+}
+
+.dark .daterangepicker {
+    color: #e5e7eb;
+    background-color: #1f2937;
+    border-color: #374151;
+    box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+}
+
+.dark .daterangepicker::before {
+    border-bottom-color: #374151;
+}
+
+.dark .daterangepicker::after {
+    border-bottom-color: #1f2937;
+}
+
+.dark .daterangepicker.drop-up::before {
+    border-top-color: #374151;
+}
+
+.dark .daterangepicker.drop-up::after {
+    border-top-color: #1f2937;
+}
+
+/* ---- Ranges (tombol preset) ---- */
+
+.daterangepicker .ranges ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.daterangepicker .ranges li {
+    padding: 0.45rem 0.75rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: #374151;
+}
+
+.daterangepicker .ranges li+li {
+    margin-top: 2px;
+}
+
+.daterangepicker .ranges li:hover {
+    background-color: #f3f4f6;
+}
+
+.daterangepicker .ranges li.active {
+    background-color: #155dfc;
+    color: #ffffff;
+}
+
+.dark .daterangepicker .ranges li {
+    color: #d1d5db;
+}
+
+.dark .daterangepicker .ranges li:hover {
+    background-color: #374151;
+}
+
+/* ---- Kalender ---- */
+
+.daterangepicker .drp-calendar {
+    display: none;
+}
+
+.daterangepicker.show-calendar .drp-calendar {
+    display: block;
+}
+
+.daterangepicker .calendar-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.daterangepicker .calendar-table th,
+.daterangepicker .calendar-table td {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 0.5rem;
+    padding: 0;
+}
+
+/* header bulan + panah */
+.daterangepicker .calendar-table th.month {
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: capitalize;
+    color: #1f2937;
+}
+
+.daterangepicker .calendar-table thead tr:first-child th {
+    padding-bottom: 0.25rem;
+}
+
+.daterangepicker .calendar-table th.prev,
+.daterangepicker .calendar-table th.next {
+    cursor: pointer;
+    color: #6b7280;
+}
+
+.daterangepicker .calendar-table th.prev:hover,
+.daterangepicker .calendar-table th.next:hover {
+    background-color: #f3f4f6;
+}
+
+.daterangepicker .calendar-table .prev span,
+.daterangepicker .calendar-table .next span {
+    display: inline-block;
+    border: solid currentColor;
+    border-width: 0 2px 2px 0;
+    padding: 3px;
+}
+
+.daterangepicker .calendar-table .prev span {
+    transform: rotate(135deg);
+}
+
+.daterangepicker .calendar-table .next span {
+    transform: rotate(-45deg);
+}
+
+/* header hari (Min, Sen, ...) */
+.daterangepicker .calendar-table thead tr:nth-child(2) th {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #9ca3af;
+    text-transform: uppercase;
+    padding-top: 0.375rem;
+    padding-bottom: 0.375rem;
+}
+
+/* dropdown bulan & tahun (showDropdowns) */
+.daterangepicker select.monthselect,
+.daterangepicker select.yearselect {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.375rem;
+    padding: 0.125rem 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0.125rem;
+    cursor: pointer;
+    outline: none;
+}
+
+.dark .daterangepicker select.monthselect,
+.dark .daterangepicker select.yearselect {
+    background-color: #1f2937;
+    border-color: #374151;
+    color: #e5e7eb;
+}
+
+/* sel tanggal */
+.daterangepicker td {
+    font-size: 0.75rem;
+    cursor: pointer;
+    color: #374151;
+}
+
+.daterangepicker td.off {
+    color: #d1d5db;
+}
+
+.daterangepicker td.off.disabled {
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+.daterangepicker td.today {
+    box-shadow: inset 0 0 0 1.5px #155dfc;
+}
+
+.daterangepicker td.available:hover {
+    background-color: #eff6ff;
+    color: #155dfc;
+}
+
+.daterangepicker td.in-range {
+    background-color: #dbeafe;
+    border-radius: 0;
+    color: #1e3a8a;
+}
+
+.daterangepicker td.active {
+    background-color: #155dfc;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.daterangepicker td.active:hover {
+    background-color: #0f4bc9;
+}
+
+.daterangepicker td.start-date {
+    border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.daterangepicker td.end-date {
+    border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.daterangepicker td.start-date.end-date {
+    border-radius: 0.5rem;
+}
+
+.dark .daterangepicker td {
+    color: #e5e7eb;
+}
+
+.dark .daterangepicker th.month {
+    color: #e5e7eb;
+}
+
+.dark .daterangepicker td.off {
+    color: #4b5563;
+}
+
+.dark .daterangepicker td.available:hover {
+    background-color: #374151;
+    color: #93c5fd;
+}
+
+.dark .daterangepicker td.in-range {
+    background-color: #1e3a8a;
+    color: #bfdbfe;
+}
+
+.dark .daterangepicker td.active {
+    background-color: #155dfc;
+    color: #ffffff;
+}
+
+.dark .daterangepicker td.active:hover {
+    background-color: #0f4bc9;
+}
+
+.dark .daterangepicker .calendar-table th.prev,
+.dark .daterangepicker .calendar-table th.next {
+    color: #9ca3af;
+}
+
+.dark .daterangepicker .calendar-table th.prev:hover,
+.dark .daterangepicker .calendar-table th.next:hover {
+    background-color: #374151;
+}
+
+/* ---- Tombol Apply / Cancel ---- */
+
+.daterangepicker .drp-buttons {
+    display: none;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #f3f4f6;
+}
+
+.daterangepicker.show-calendar .drp-buttons {
+    display: flex;
+}
+
+.daterangepicker .drp-selected {
+    margin-right: auto;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #6b7280;
+}
+
+.daterangepicker .cancelBtn {
+    padding: 0.4rem 0.875rem;
+    border-radius: 0.625rem;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: #6b7280;
+    background-color: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    cursor: pointer;
+}
+
+.daterangepicker .cancelBtn:hover {
+    background-color: #e5e7eb;
+}
+
+.daterangepicker .applyBtn {
+    padding: 0.4rem 0.875rem;
+    border-radius: 0.625rem;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: #ffffff;
+    background-color: #155dfc;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.daterangepicker .applyBtn:hover:not(:disabled) {
+    background-color: #0f4bc9;
+}
+
+.daterangepicker .applyBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.dark .daterangepicker .drp-buttons {
+    border-top-color: #374151;
+}
+
+.dark .daterangepicker .drp-selected {
+    color: #9ca3af;
+}
+
+.dark .daterangepicker .cancelBtn {
+    color: #d1d5db;
+    background-color: #374151;
+    border-color: #4b5563;
+}
+
+.dark .daterangepicker .cancelBtn:hover {
+    background-color: #4b5563;
+}
+
+/* ---- Responsif: rangkaian (ranges + kalender) menyamping di layar lebar ---- */
+/* CATATAN: container display dikontrol INLINE oleh library (none saat
+   tersembunyi, block saat dibuka). Jangan pakai display:flex/!important pada
+   `.daterangepicker` itu sendiri — itu menimpa display:none inline dan membuat
+   panel preset tampil di halaman utama. Pakai float (seperti library asli). */
+
+@media (min-width: 640px) {
+    .daterangepicker {
+        width: auto;
+    }
+
+    .daterangepicker .ranges,
+    .daterangepicker .drp-calendar {
+        float: left;
+    }
+
+    .daterangepicker .ranges {
+        width: 8.5rem;
+        flex-shrink: 0;
+        border-right: 1px solid #f3f4f6;
+        margin-right: 0.25rem;
+        padding-right: 0.25rem;
+    }
+
+    .daterangepicker .drp-calendar {
+        min-width: 0;
+    }
+
+    .daterangepicker .drp-calendar.left {
+        clear: none;
+    }
+
+    /* tombol Apply/Cancel turun ke baris baru setelah kalender */
+    .daterangepicker .drp-buttons {
+        clear: both;
+    }
+
+    .dark .daterangepicker .ranges {
+        border-right-color: #374151;
+    }
+}

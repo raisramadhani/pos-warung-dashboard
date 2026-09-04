@@ -1,0 +1,26 @@
+{
+    "agents": [
+        "opencode",
+        "copilot"
+    ],
+    "cloud": false,
+    "guidelines": true,
+    "mcp": true,
+    "nightwatch": false,
+    "packages": [
+        "filament/filament",
+        "spatie/laravel-activitylog",
+        "fruitcake/laravel-debugbar",
+        "spatie/laravel-sluggable"
+    ],
+    "sail": false,
+    "skills": [
+        "infer-conventions",
+        "laravel-best-practices",
+        "pest-testing",
+        "echo-development",
+        "tailwindcss-development",
+        "sluggable-development",
+        "debug-using-debugbar"
+    ]
+}
