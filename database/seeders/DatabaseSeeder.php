@@ -28,15 +28,14 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             SupplierSeeder::class,       // Master Suppliers
-            MerchantSeeder::class,       // Master Cabang (SOLO 1, SOLO 2, SOLO 3)
+            MerchantSeeder::class,       // Master Cabang (Bebek Ledok Karanganyar 1/2/3)
             CategorySeeder::class,       // Kategori tiap cabang
             ItemSeeder::class,           // Data fisik bahan baku & alat
-            ProductSeeder::class,        // Menu POS & takaran resep bahan baku
+            ProductSeeder::class,        // Menu POS
             PurchaseOrderSeeder::class,   // Penerimaan stok bahan dari supplier ke pusat
             DistributionSeeder::class,   // Distribusi stok pusat ke cabang
             TransactionSeeder::class,    // Simulasi transaksi memotong stok cabang
             // AttendanceSeeder::class,     // Kehadiran karyawan per merchant
-            PromotionSeeder::class,      // Promo otomatis tiap cabang (badge di POS)
             PayrollSeeder::class,        // Penggajian dengan bonus transaksi
             AssetSeeder::class,          // Pencatatan aset mesin & penyusutan
             StockOpnameSeeder::class,    // Sesi stock opname di merchant

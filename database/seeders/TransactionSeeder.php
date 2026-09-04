@@ -19,17 +19,17 @@ use Illuminate\Support\Facades\DB;
  * agar tidak ada transaksi di masa depan yang menyulitkan testing manual.
  *
  * Strategi volume per merchant (dikurangi 20x untuk seeding cepat):
- *   - SOLO 1 (Pusat): rata-rata 28 cup/hari
- *   - SOLO 2 (Pusat): rata-rata 23 cup/hari
- *   - SOLO 3 (Cabang): rata-rata 14 cup/hari
+ *   - Bebek Ledok Karanganyar 1 (Pusat): rata-rata 28 porsi/hari
+ *   - Bebek Ledok Karanganyar 2 (Pusat): rata-rata 23 porsi/hari
+ *   - Bebek Ledok Karanganyar 3 (Cabang): rata-rata 14 porsi/hari
  */
 class TransactionSeeder extends Seeder
 {
     /** Target volume per merchant per hari */
     private array $volumeConfig = [
-        'SOLO 1' => ['avg' => 28, 'variance' => 4],
-        'SOLO 2' => ['avg' => 23, 'variance' => 4],
-        'SOLO 3' => ['avg' => 14, 'variance' => 3],
+        'Bebek Ledok Karanganyar 1' => ['avg' => 28, 'variance' => 4],
+        'Bebek Ledok Karanganyar 2' => ['avg' => 23, 'variance' => 4],
+        'Bebek Ledok Karanganyar 3' => ['avg' => 14, 'variance' => 3],
     ];
 
     public function run(): void

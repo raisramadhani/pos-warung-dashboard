@@ -16,16 +16,16 @@ use Illuminate\Support\Carbon;
  * Seed daftar kehadiran karyawan per merchant untuk Agustus 2026.
  *
  * Jumlah karyawan per merchant:
- *   - SOLO 1: 3 orang (pusat, volume tinggi)
- *   - SOLO 2: 2 orang (pusat, volume sedang)
- *   - SOLO 3: 2 orang (cabang, volume rendah)
+ *   - Bebek Ledok Karanganyar 1: 3 orang (pusat, volume tinggi)
+ *   - Bebek Ledok Karanganyar 2: 2 orang (pusat, volume sedang)
+ *   - Bebek Ledok Karanganyar 3: 2 orang (cabang, volume rendah)
  */
 class AttendanceSeeder extends Seeder
 {
     private array $employeeCounts = [
-        'SOLO 1' => 3,
-        'SOLO 2' => 2,
-        'SOLO 3' => 2,
+        'Bebek Ledok Karanganyar 1' => 3,
+        'Bebek Ledok Karanganyar 2' => 2,
+        'Bebek Ledok Karanganyar 3' => 2,
     ];
 
     public function run(): void

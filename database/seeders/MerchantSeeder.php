@@ -19,11 +19,11 @@ class MerchantSeeder extends Seeder
         $password = Hash::make('password');
 
         Merchant::create([
-            'name' => 'Gudang Pusat',
+            'name' => 'Gudang Bebek Ledok',
             'type' => MerchantType::Warehouse,
-            'slug' => 'gudang-pusat',
+            'slug' => 'gudang-bebek-ledok',
             'avatar_path' => null,
-            'address' => 'Gudang Pusat',
+            'address' => 'Gudang Bebek Ledok',
             'latitude' => null,
             'longitude' => null,
             'ownership_type' => OwnershipType::Main,
@@ -32,22 +32,22 @@ class MerchantSeeder extends Seeder
 
         $merchants = [
             [
-                'name' => 'SOLO 1',
-                'address' => 'Surakarta',
-                'latitude' => '-7.5581339',
-                'longitude' => '110.7716824',
+                'name' => 'Bebek Ledok Karanganyar 1',
+                'address' => 'Jl. Lawu, Karanganyar',
+                'latitude' => '-7.5961000',
+                'longitude' => '110.9502000',
             ],
             [
-                'name' => 'SOLO 2',
-                'address' => 'Surakarta',
-                'latitude' => '-7.5404315',
-                'longitude' => '110.8206136',
+                'name' => 'Bebek Ledok Karanganyar 2',
+                'address' => 'Jl. Raya Solo–Tawangmangu, Karanganyar',
+                'latitude' => '-7.5857000',
+                'longitude' => '110.9801000',
             ],
             [
-                'name' => 'SOLO 3',
-                'address' => 'Surakarta',
-                'latitude' => '-7.5815958',
-                'longitude' => '110.8192241',
+                'name' => 'Bebek Ledok Karanganyar 3',
+                'address' => 'Jl. Ring Road, Karanganyar',
+                'latitude' => '-7.6102000',
+                'longitude' => '110.9308000',
             ],
         ];
 

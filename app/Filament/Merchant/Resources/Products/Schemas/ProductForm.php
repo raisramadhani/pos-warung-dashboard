@@ -2,16 +2,12 @@
 
 namespace App\Filament\Merchant\Resources\Products\Schemas;
 
-use App\Models\Inventories\Item;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\Repeater\TableColumn;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Schemas\Components\Section;
-use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
 use Filament\Support\RawJs;
 use Illuminate\Http\UploadedFile;
@@ -95,45 +91,6 @@ class ProductForm
                             ->grouped()
                             ->default(true),
 
-                    ]),
-                Section::make('Bahan Material')
-                    ->description('Komposisi bahan yang dibutuhkan per produk. Akan otomatis mengurangi stok bahan baku saat produk dijual.')
-                    ->columnSpanFull()
-                    ->schema([
-                        Repeater::make('productMaterials')
-                            ->label('Bahan Material')
-                            ->relationship()
-                            ->table([
-                                TableColumn::make('Item'),
-                                TableColumn::make('Qty Dibutuhkan'),
-                            ])
-                            ->compact()
-                            ->schema([
-                                Select::make('item_id')
-                                    ->label('Item')
-                                    ->relationship('item', 'name')
-                                    ->searchable()
-                                    ->preload()
-                                    ->required()
-                                    ->live(),
-                                TextInput::make('quantity_required')
-                                    ->label('Qty Dibutuhkan')
-                                    ->placeholder('Masukan qty dibutuhkan (mis. 0.0005)')
-                                    ->default(1)
-                                    ->required()
-                                    ->mask(RawJs::make('$money($input, \',\', \'.\', 4)'))
-                                    ->formatStateUsing(fn ($state) => format_quantity($state))
-                                    ->dehydrateStateUsing(fn ($state) => to_number($state))
-                                    ->suffix(function (Get $get): ?string {
-                                        $itemId = $get('item_id');
-
-                                        if (! $itemId) {
-                                            return null;
-                                        }
-
-                                        return Item::find($itemId)?->unit;
-                                    }),
-                            ]),
                     ]),
             ]);
     }

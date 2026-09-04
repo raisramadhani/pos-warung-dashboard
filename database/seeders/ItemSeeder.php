@@ -12,47 +12,48 @@ class ItemSeeder extends Seeder
     public function run(): void
     {
         $items = [
-            ['name' => 'Cup ETD 16oz', 'type' => ItemType::RawMaterial, 'unit' => 'pcs'],
-            ['name' => 'Cup ETD 22oz', 'type' => ItemType::RawMaterial, 'unit' => 'pcs'],
-            ['name' => 'Tutup Datar', 'type' => ItemType::RawMaterial, 'unit' => 'pcs'],
-            ['name' => 'Sedotan (Pack)', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
-            ['name' => 'Lid Sealer', 'type' => ItemType::RawMaterial, 'unit' => 'roll'],
-            ['name' => 'Refill Galon', 'type' => ItemType::RawMaterial, 'unit' => 'galon'],
+            // Bahan baku utama (protein)
+            ['name' => 'Bebek (ekor)', 'type' => ItemType::RawMaterial, 'unit' => 'ekor'],
+            ['name' => 'Ayam (ekor)', 'type' => ItemType::RawMaterial, 'unit' => 'ekor'],
 
-            ['name' => 'Teh Racik', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
-            ['name' => 'Susu UHT', 'type' => ItemType::RawMaterial, 'unit' => 'liter'],
-            ['name' => 'Susu SKM', 'type' => ItemType::RawMaterial, 'unit' => 'kaleng'],
-            ['name' => 'Jeruk Malang', 'type' => ItemType::RawMaterial, 'unit' => 'pcs'],
-            ['name' => 'Jeruk Kampul', 'type' => ItemType::RawMaterial, 'unit' => 'pcs'],
+            // Karbohidrat & lauk pendamping
+            ['name' => 'Nasi Putih', 'type' => ItemType::RawMaterial, 'unit' => 'porsi'],
+            ['name' => 'Tahu', 'type' => ItemType::RawMaterial, 'unit' => 'potong'],
+            ['name' => 'Tempe', 'type' => ItemType::RawMaterial, 'unit' => 'potong'],
+            ['name' => 'Terong', 'type' => ItemType::RawMaterial, 'unit' => 'buah'],
+            ['name' => 'Telur Ayam', 'type' => ItemType::RawMaterial, 'unit' => 'butir'],
+
+            // Lalapan & sayuran
+            ['name' => 'Kol', 'type' => ItemType::RawMaterial, 'unit' => 'ikat'],
+            ['name' => 'Timun', 'type' => ItemType::RawMaterial, 'unit' => 'buah'],
+            ['name' => 'Kacang Panjang', 'type' => ItemType::RawMaterial, 'unit' => 'ikat'],
+            ['name' => 'Daun Kemangi', 'type' => ItemType::RawMaterial, 'unit' => 'ikat'],
+            ['name' => 'Trancam Segar', 'type' => ItemType::RawMaterial, 'unit' => 'porsi'],
+
+            // Bumbu, pelengkap & minyak
+            ['name' => 'Peyek', 'type' => ItemType::RawMaterial, 'unit' => 'bungkus'],
+            ['name' => 'Sambal Bawang', 'type' => ItemType::RawMaterial, 'unit' => 'porsi'],
+            ['name' => 'Sambal Hijau', 'type' => ItemType::RawMaterial, 'unit' => 'porsi'],
+            ['name' => 'Bumbu Dasar (Bawang Merah/Putih, Kemiri, Kunyit, Ketumbar)', 'type' => ItemType::RawMaterial, 'unit' => 'kg'],
+            ['name' => 'Serai & Daun Jeruk', 'type' => ItemType::RawMaterial, 'unit' => 'ikat'],
+            ['name' => 'Kecap Manis', 'type' => ItemType::RawMaterial, 'unit' => 'botol'],
+            ['name' => 'Tepung Kriuk/Kremes', 'type' => ItemType::RawMaterial, 'unit' => 'kg'],
+            ['name' => 'Minyak Goreng', 'type' => ItemType::RawMaterial, 'unit' => 'liter'],
+            ['name' => 'Garam', 'type' => ItemType::RawMaterial, 'unit' => 'kg'],
+
+            // Minuman
             ['name' => 'Gula', 'type' => ItemType::RawMaterial, 'unit' => 'kg'],
-            ['name' => 'Es Batu Kristal', 'type' => ItemType::RawMaterial, 'unit' => 'kg'],
+            ['name' => 'Teh Celup', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
+            ['name' => 'Jeruk Peras', 'type' => ItemType::RawMaterial, 'unit' => 'kg'],
+            ['name' => 'Es Batu', 'type' => ItemType::RawMaterial, 'unit' => 'kg'],
 
-            ['name' => 'Perasa Jasmine Tea', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
-            ['name' => 'Perasa Blueberry Tea', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
-            ['name' => 'Perasa Leci Tea', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
-            ['name' => 'Perasa Thai Tea', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
-            ['name' => 'Perasa Green Tea', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
-            ['name' => 'Perasa Passion Fruit Tea', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
-            ['name' => 'Bubuk Cappucino Machiato', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
-            ['name' => 'Bubuk Chocomelt Machiato', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
-            ['name' => 'Bubuk Taro Machiato', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
-            ['name' => 'Bubuk Redvelvet Machiato', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
-            ['name' => 'Perasa Strawberry Fruit', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
-            ['name' => 'Perasa Grape Fruit', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
-            ['name' => 'Perasa Mango Fruit', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
-            ['name' => 'Perasa Milk Tea', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
-            ['name' => 'Perasa Leci Fruit', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
-            ['name' => 'Perasa ButterScooth', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
-            ['name' => 'Bubuk Matcha', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
-            ['name' => 'Bubuk Choco Original', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
-
-            ['name' => 'Mie Samyang', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
-            ['name' => 'Mie Seblak', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
-            ['name' => 'Mie Original', 'type' => ItemType::RawMaterial, 'unit' => 'pack'],
-
-            ['name' => 'Mesin Cup Sealer', 'type' => ItemType::Tool, 'unit' => 'unit'],
-            ['name' => 'Dispenser Teh', 'type' => ItemType::Tool, 'unit' => 'unit'],
-            ['name' => 'Cooler Box', 'type' => ItemType::Tool, 'unit' => 'unit'],
+            // Peralatan dapur (aset)
+            ['name' => 'Wajan Besar', 'type' => ItemType::Tool, 'unit' => 'unit'],
+            ['name' => 'Presto', 'type' => ItemType::Tool, 'unit' => 'unit'],
+            ['name' => 'Kompor Gas', 'type' => ItemType::Tool, 'unit' => 'unit'],
+            ['name' => 'Freezer Box', 'type' => ItemType::Tool, 'unit' => 'unit'],
+            ['name' => 'Dandang Nasi', 'type' => ItemType::Tool, 'unit' => 'unit'],
+            ['name' => 'Talenan & Pisau Dapur', 'type' => ItemType::Tool, 'unit' => 'set'],
         ];
 
         foreach ($items as $data) {

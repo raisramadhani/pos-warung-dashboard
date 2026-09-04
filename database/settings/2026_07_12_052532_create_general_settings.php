@@ -6,7 +6,7 @@ return new class extends SettingsMigration
 {
     public function up(): void
     {
-        $this->migrator->add('general.brandName', 'Abra POS');
+        $this->migrator->add('general.brandName', 'Bebek Ledok');
         $this->migrator->add('general.brandLogo', null);
         $this->migrator->add('general.brandLogoHeight', null);
         $this->migrator->add('general.darkModeBrandLogo', null);

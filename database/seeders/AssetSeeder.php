@@ -13,13 +13,14 @@ class AssetSeeder extends Seeder
 {
     public function run(): void
     {
-        $sealerItem = Item::where('name', 'Mesin Cup Sealer')->first();
-        $coolerItem = Item::where('name', 'Cooler Box')->first();
+        $wajanItem = Item::where('name', 'Wajan Besar')->first();
+        $prestoItem = Item::where('name', 'Presto')->first();
+        $freezerItem = Item::where('name', 'Freezer Box')->first();
 
         $asset1 = Asset::factory()->create([
-            'item_id' => $sealerItem?->id,
-            'name' => 'Mesin Cup Sealer Eton',
-            'description' => 'Mesin press plastik untuk penutup cup',
+            'item_id' => $wajanItem?->id,
+            'name' => 'Wajan Besar Bebek Ledok',
+            'description' => 'Wajan besar untuk menggoreng bebek/ayam kremes',
             'acquisition_date' => '2026-01-15',
             'acquisition_cost' => 1200000,
             'useful_life_months' => 36,
@@ -29,9 +30,9 @@ class AssetSeeder extends Seeder
         ]);
 
         $asset2 = Asset::factory()->create([
-            'item_id' => null,
-            'name' => 'Dispenser Teh Stainless 20L',
-            'description' => 'Wadah penampung seduhan teh',
+            'item_id' => $prestoItem?->id,
+            'name' => 'Presto PrestoMax 22L',
+            'description' => 'Presto untuk mengempukkan daging bebek/ayam',
             'acquisition_date' => '2026-02-01',
             'acquisition_cost' => 500000,
             'useful_life_months' => 24,
@@ -41,9 +42,9 @@ class AssetSeeder extends Seeder
         ]);
 
         $asset3 = Asset::factory()->create([
-            'item_id' => $coolerItem?->id,
-            'name' => 'Cooler Box Marina 35L',
-            'description' => 'Box penyimpan es batu kristal',
+            'item_id' => $freezerItem?->id,
+            'name' => 'Freezer Box GEA 35L',
+            'description' => 'Freezer untuk menyimpan stok bebek/ayam beku',
             'acquisition_date' => '2026-03-10',
             'acquisition_cost' => 450000,
             'useful_life_months' => 24,

@@ -12,7 +12,7 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $merchants = Merchant::all();
-        $categories = ['Racik Series', 'Fruit Series', 'Macchiatto Series', 'Mie Desa'];
+        $categories = ['Paket Ekoran', 'Porsian', 'Tambahan', 'Minuman'];
 
         foreach ($merchants as $merchant) {
             foreach ($categories as $categoryName) {
