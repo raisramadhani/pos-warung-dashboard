@@ -161,7 +161,7 @@ trait ConfiguresFilamentPanel
     protected function applyCommonColors(Panel &$panel): Panel
     {
         return $panel->colors([
-            'primary' => Color::Blue,
+            'primary' => Color::Green,
             'pink' => Color::Pink,
             'blue' => Color::Blue,
             'green' => Color::Green,
