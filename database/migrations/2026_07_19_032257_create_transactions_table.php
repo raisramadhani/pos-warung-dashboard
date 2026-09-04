@@ -48,7 +48,7 @@ return new class extends Migration
                 ->default(0)
                 ->comment('Total jumlah item yang terjual');
             $table->text('notes')->nullable();
-            $table->timestamp('transaction_at');
+            $table->timestamp('transaction_at')->nullable();
             $table->timestamps();
 
             $table->unique(['merchant_id', 'idempotency_key']);
