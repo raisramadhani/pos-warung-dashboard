@@ -8,6 +8,7 @@ use App\Enums\Payments\PaymentMethod;
 use App\Models\Merchants\Merchant;
 use App\Models\Transactions\Transaction;
 use Carbon\CarbonPeriod;
+use Faker\Generator;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -15,8 +16,14 @@ use Illuminate\Support\Facades\DB;
 /**
  * Seed transaksi realistis per merchant.
  *
- * Periode seeding: dari awal bulan (1 Agustus 2026) sampai tanggal & jam saat seed,
- * agar tidak ada transaksi di masa depan yang menyulitkan testing manual.
+ * Periode seeding: dari 1 Juni 2026 (3 bulan kalender terakhir) sampai tanggal &
+ * jam saat seed, agar tidak ada transaksi di masa depan yang menyulitkan testing
+ * manual. Resto tutup setiap hari Jumat (libur), sehingga tidak ada transaksi
+ * yang dibuat pada hari Jumat.
+ *
+ * Jam operasional 09.00–20.00 dengan pola waktu makan:
+ *   - 11.00–14.00 ramai (makan siang)
+ *   - 17.00–20.00 ramai (makan malam)
  *
  * Strategi volume per merchant (dikurangi 20x untuk seeding cepat):
  *   - Bebek Ledok Karanganyar 1 (Pusat): rata-rata 28 porsi/hari
@@ -32,6 +39,34 @@ class TransactionSeeder extends Seeder
         'Bebek Ledok Karanganyar 3' => ['avg' => 14, 'variance' => 3],
     ];
 
+    /**
+     * Pilih jam operasional (09.00–19.59) secara acak berbobot.
+     * Waktu makan siang (11–14) dan makan malam (17–20) lebih ramai.
+     */
+    private function weightedOpenHour(Generator $faker): int
+    {
+        $slots = [
+            [9, 11, 1],   // pagi – normal
+            [11, 14, 3],  // makan siang – ramai
+            [14, 17, 2],  // sore – normal
+            [17, 20, 3],  // makan malam – ramai
+        ];
+
+        $total = array_sum(array_column($slots, 2));
+        $roll = $faker->numberBetween(1, $total);
+        $cursor = 0;
+
+        foreach ($slots as [$start, $end, $weight]) {
+            $cursor += $weight;
+
+            if ($roll <= $cursor) {
+                return $faker->numberBetween($start, $end - 1);
+            }
+        }
+
+        return $faker->numberBetween(9, 19);
+    }
+
     public function run(): void
     {
         $merchants = Merchant::where('type', MerchantType::Merchant)
@@ -39,7 +74,7 @@ class TransactionSeeder extends Seeder
             ->with('products.category')
             ->get();
 
-        $startDate = Carbon::create(2026, 8, 1);
+        $startDate = Carbon::create(2026, 6, 1);
         $now = Carbon::now();
         $endDate = $now->copy()->endOfDay();
 
@@ -55,10 +90,14 @@ class TransactionSeeder extends Seeder
                 $period = CarbonPeriod::create($startDate, $endDate);
 
                 foreach ($period as $date) {
+                    // Resto tutup setiap hari Jumat (libur), termasuk hari ini bila Jumat.
+                    if ($date->isFriday()) {
+                        continue;
+                    }
+
                     // Hari terakhir (hari ini): hanya seed transaksi sampai jam sekarang,
                     // agar tidak ada transaksi "masa depan" yang menyulitkan testing manual.
                     $isToday = $date->isSameDay($now);
-                    $maxHour = $isToday ? $now->hour : 21;
                     $maxMinute = $isToday ? $now->minute : 59;
 
                     $dayMultiplier = $date->isSunday() ? 0.3 : 1.0;
@@ -97,8 +136,8 @@ class TransactionSeeder extends Seeder
                             : 0;
 
                         $transactionTime = $date->copy()->setTime(
-                            fake()->numberBetween(8, max(8, $maxHour)),
-                            fake()->numberBetween(0, $maxMinute),
+                            $this->weightedOpenHour(fake()),
+                            fake()->numberBetween(0, max(0, $maxMinute)),
                             fake()->numberBetween(0, 59),
                         );
 

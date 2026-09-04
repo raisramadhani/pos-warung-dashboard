@@ -62,20 +62,14 @@ class RevenueTrendByDayOfWeekChart extends ApexChartWidget
             yaxis: {
                 labels: {
                     formatter: function (val) {
-                        if (val >= 1000) {
-                            return 'Rp' + (val / 1000) + 'K';
-                        }
-                        return 'Rp' + val;
+                        return window.formatChartRupiah ? window.formatChartRupiah(val) : ('Rp' + val);
                     }
                 }
             },
             tooltip: {
                 y: {
                     formatter: function (val) {
-                        if (val >= 1000) {
-                            return 'Rp' + (val / 1000) + 'K';
-                        }
-                        return 'Rp' + val;
+                        return window.formatChartRupiah ? window.formatChartRupiah(val) : ('Rp' + val);
                     }
                 }
             }
