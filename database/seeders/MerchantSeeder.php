@@ -32,27 +32,15 @@ class MerchantSeeder extends Seeder
 
         $merchants = [
             [
-                'name' => 'Bebek Ledok Karanganyar 1',
+                'name' => 'Bebek Ledok Karanganyar',
                 'address' => 'Jl. Lawu, Karanganyar',
                 'latitude' => '-7.5961000',
                 'longitude' => '110.9502000',
             ],
-            [
-                'name' => 'Bebek Ledok Karanganyar 2',
-                'address' => 'Jl. Raya Solo–Tawangmangu, Karanganyar',
-                'latitude' => '-7.5857000',
-                'longitude' => '110.9801000',
-            ],
-            [
-                'name' => 'Bebek Ledok Karanganyar 3',
-                'address' => 'Jl. Ring Road, Karanganyar',
-                'latitude' => '-7.6102000',
-                'longitude' => '110.9308000',
-            ],
         ];
 
-        foreach ($merchants as $index => $data) {
-            $i = $index + 1;
+        foreach ($merchants as $data) {
+            $i = 1; // hanya ada 1 outlet → outlet1@example.com
 
             $merchant = Merchant::create([
                 'name' => $data['name'],

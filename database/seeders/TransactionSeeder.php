@@ -16,27 +16,23 @@ use Illuminate\Support\Facades\DB;
 /**
  * Seed transaksi realistis per merchant.
  *
- * Periode seeding: dari 1 Juni 2026 (3 bulan kalender terakhir) sampai tanggal &
- * jam saat seed, agar tidak ada transaksi di masa depan yang menyulitkan testing
- * manual. Resto tutup setiap hari Jumat (libur), sehingga tidak ada transaksi
- * yang dibuat pada hari Jumat.
+ * Periode seeding: 90 hari terakhir (dinamis mengikuti tanggal seed dijalankan)
+ * sampai tanggal & jam saat seed, agar tidak ada transaksi di masa depan yang
+ * menyulitkan testing manual. Resto tutup setiap hari Jumat (libur), sehingga
+ * tidak ada transaksi yang dibuat pada hari Jumat.
  *
  * Jam operasional 09.00–20.00 dengan pola waktu makan:
  *   - 11.00–14.00 ramai (makan siang)
  *   - 17.00–20.00 ramai (makan malam)
  *
  * Strategi volume per merchant (dikurangi 20x untuk seeding cepat):
- *   - Bebek Ledok Karanganyar 1 (Pusat): rata-rata 28 porsi/hari
- *   - Bebek Ledok Karanganyar 2 (Pusat): rata-rata 23 porsi/hari
- *   - Bebek Ledok Karanganyar 3 (Cabang): rata-rata 14 porsi/hari
+ *   - Bebek Ledok Karanganyar (satu-satunya outlet): rata-rata 28 porsi/hari
  */
 class TransactionSeeder extends Seeder
 {
     /** Target volume per merchant per hari */
     private array $volumeConfig = [
-        'Bebek Ledok Karanganyar 1' => ['avg' => 28, 'variance' => 4],
-        'Bebek Ledok Karanganyar 2' => ['avg' => 23, 'variance' => 4],
-        'Bebek Ledok Karanganyar 3' => ['avg' => 14, 'variance' => 3],
+        'Bebek Ledok Karanganyar' => ['avg' => 28, 'variance' => 4],
     ];
 
     /**
@@ -74,7 +70,7 @@ class TransactionSeeder extends Seeder
             ->with('products.category')
             ->get();
 
-        $startDate = Carbon::create(2026, 6, 1);
+        $startDate = now()->subDays(90)->startOfDay();
         $now = Carbon::now();
         $endDate = $now->copy()->endOfDay();
 

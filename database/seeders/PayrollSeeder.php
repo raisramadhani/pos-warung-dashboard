@@ -21,9 +21,7 @@ use Illuminate\Support\Carbon;
  * Menggunakan data transaksi (TransactionSeeder) dan kehadiran (AttendanceSeeder).
  *
  * Strategi:
- *   - Bebek Ledok Karanganyar 1 (Pusat, 3 karyawan): SELALU dapat bonus (volume tinggi)
- *   - Bebek Ledok Karanganyar 2 (Pusat, 2 karyawan): kadang dapat bonus (volume mendekati target)
- *   - Bebek Ledok Karanganyar 3 (Cabang, 2 karyawan): jarang dapat bonus (volume rendah, perlu attendance sheet)
+ *   - Bebek Ledok Karanganyar (satu-satunya outlet, volume tinggi): selalu dapat bonus
  */
 class PayrollSeeder extends Seeder
 {

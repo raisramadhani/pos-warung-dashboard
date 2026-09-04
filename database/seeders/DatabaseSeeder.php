@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             SupplierSeeder::class,       // Master Suppliers
-            MerchantSeeder::class,       // Master Cabang (Bebek Ledok Karanganyar 1/2/3)
+            MerchantSeeder::class,       // Master Cabang (Bebek Ledok Karanganyar)
             CategorySeeder::class,       // Kategori tiap cabang
             ItemSeeder::class,           // Data fisik bahan baku & alat
             ProductSeeder::class,        // Menu POS

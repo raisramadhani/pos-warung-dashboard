@@ -46,38 +46,35 @@ class StockOpnameSeeder extends Seeder
         }
 
         /*
-         * 2 Stock Opname in Reconciling state — items counted, awaiting review.
+         * 1 Stock Opname in Reconciling state — items counted, awaiting review.
          * Stock is NOT yet adjusted.
          */
-        foreach (range(1, 2) as $i) {
-            $merchant = $merchants->skip($i)->first() ?? $merchants->first();
-            $reconciling = StockOpname::factory()->reconciling()->create([
-                'merchant_id' => $merchant->id,
-                'created_by' => $users->random()->id,
-                'notes' => fake()->boolean(70)
-                    ? 'Stock opname periodik — menunggu review'
-                    : null,
+        $merchant = $merchants->first();
+        $reconciling = StockOpname::factory()->reconciling()->create([
+            'merchant_id' => $merchant->id,
+            'created_by' => $users->random()->id,
+            'notes' => fake()->boolean(70)
+                ? 'Stock opname periodik — menunggu review'
+                : null,
+        ]);
+
+        $merchantStocks = MerchantStock::where('merchant_id', $merchant->id)->get();
+
+        foreach ($merchantStocks as $stock) {
+            $actual = max(0, (int) $stock->quantity + fake()->numberBetween(-5, 5));
+
+            StockOpnameItem::factory()->create([
+                'stock_opname_id' => $reconciling->id,
+                'item_id' => $stock->item_id,
+                'system_quantity' => (int) $stock->quantity,
+                'actual_quantity' => $actual,
+                'difference' => $actual - (int) $stock->quantity,
             ]);
-
-            $merchantStocks = MerchantStock::where('merchant_id', $merchant->id)->get();
-
-            foreach ($merchantStocks as $stock) {
-                $actual = max(0, (int) $stock->quantity + fake()->numberBetween(-5, 5));
-
-                StockOpnameItem::factory()->create([
-                    'stock_opname_id' => $reconciling->id,
-                    'item_id' => $stock->item_id,
-                    'system_quantity' => (int) $stock->quantity,
-                    'actual_quantity' => $actual,
-                    'difference' => $actual - (int) $stock->quantity,
-                ]);
-            }
         }
 
         /*
          * 1 Stock Opname in Counting state — counting in progress, some items counted.
          */
-        $merchant = $merchants->last() ?? $merchants->first();
         $counting = StockOpname::factory()->counting()->create([
             'merchant_id' => $merchant->id,
             'created_by' => $users->random()->id,
