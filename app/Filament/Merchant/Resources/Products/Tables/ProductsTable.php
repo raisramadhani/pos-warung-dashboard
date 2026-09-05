@@ -31,7 +31,7 @@ class ProductsTable
                 ImageColumn::make('image_path')
                     ->label('Gambar')
                     ->disk('public')
-                    ->defaultImageUrl(fn (Product $record): string => 'https://ui-avatars.com/api/?name='.urlencode($record->name))
+                    ->defaultImageUrl(fn(Product $record): string => 'https://ui-avatars.com/api/?name=' . urlencode($record->name))
                     ->square(), // Menggunakan bentuk kotak standar tabel
 
                 TextColumn::make('name')
@@ -68,16 +68,16 @@ class ProductsTable
                     // ->icon('tabler-currency-dollar')
                     ->alignEnd(), // Meratakan text ke kanan
 
-                TextColumn::make('product_materials_count')
-                    ->label('Bahan')
-                    ->counts('productMaterials')
-                    ->icon('heroicon-o-cube')
-                    ->numeric()
-                    ->sortable()
-                    ->badge()
-                    // ->color('secondary')
-                    ->tooltip('Jumlah bahan yang digunakan dalam produk ini')
-                    ->alignEnd(), // Meratakan text ke kanan
+                // TextColumn::make('product_materials_count')
+                //     ->label('Bahan')
+                //     ->counts('productMaterials')
+                //     ->icon('heroicon-o-cube')
+                //     ->numeric()
+                //     ->sortable()
+                //     ->badge()
+                //     // ->color('secondary')
+                //     ->tooltip('Jumlah bahan yang digunakan dalam produk ini')
+                //     ->alignEnd(), // Meratakan text ke kanan
             ])
             ->filters([
                 SelectFilter::make('category_id')

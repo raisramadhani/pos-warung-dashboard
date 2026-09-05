@@ -47,31 +47,31 @@ class ProductInfolist
                         'md' => 2,
                         'lg' => 3,
                     ]),
-                Section::make('Bahan Material')
-                    ->description('Komposisi bahan yang dibutuhkan per produk')
-                    ->schema([
-                        RepeatableEntry::make('productMaterials')
-                            ->label('Komposisi Bahan')
-                            ->table([
-                                TableColumn::make('Item'),
-                                TableColumn::make('Qty Dibutuhkan'),
-                            ])
-                            ->schema([
-                                TextEntry::make('item.name')
-                                    ->label('Item'),
-                                TextEntry::make('quantity_required')
-                                    ->label('Qty Dibutuhkan')
-                                    ->formatStateUsing(fn (float $state): string => rtrim(rtrim(number_format($state, 4, ',', '.'), '0'), ','))
-                                    ->suffix(function (ProductMaterial $record) {
-                                        $unit = $record->item?->unit;
-                                        if ($unit) {
-                                            return ' '.$unit;
-                                        }
+                // Section::make('Bahan Material')
+                //     ->description('Komposisi bahan yang dibutuhkan per produk')
+                //     ->schema([
+                //         RepeatableEntry::make('productMaterials')
+                //             ->label('Komposisi Bahan')
+                //             ->table([
+                //                 TableColumn::make('Item'),
+                //                 TableColumn::make('Qty Dibutuhkan'),
+                //             ])
+                //             ->schema([
+                //                 TextEntry::make('item.name')
+                //                     ->label('Item'),
+                //                 TextEntry::make('quantity_required')
+                //                     ->label('Qty Dibutuhkan')
+                //                     ->formatStateUsing(fn (float $state): string => rtrim(rtrim(number_format($state, 4, ',', '.'), '0'), ','))
+                //                     ->suffix(function (ProductMaterial $record) {
+                //                         $unit = $record->item?->unit;
+                //                         if ($unit) {
+                //                             return ' '.$unit;
+                //                         }
 
-                                        return null;
-                                    }),
-                            ]),
-                    ]),
+                //                         return null;
+                //                     }),
+                //             ]),
+                //     ]),
             ]);
     }
 }
